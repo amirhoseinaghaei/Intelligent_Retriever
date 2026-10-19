@@ -1,0 +1,5 @@
+# Copy this file to config.toml and fill in your provider credentials and model.
+[reward]
+provider = "openrouter"
+api_key = ""
+model = ""

@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rl-posttraining"
+version = "0.1.0"
+description = "Snapshot-based ArtifactNet query training with LoRA and GRPO"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.optional-dependencies]
+llm = [
+    "ray==2.59.0",
+    "torch>=2.6,<3",
+    "transformers==4.56.2",
+    "peft==0.17.1",
+    "accelerate==1.10.1",
+]
+
+[project.scripts]
+train-query-grpo = "rl_posttraining.cli.train_llm:main"
+checkpoint-manager = "rl_posttraining.cli.checkpoints:main"
+extract-investigate-data = "rl_posttraining.cli.extract:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]

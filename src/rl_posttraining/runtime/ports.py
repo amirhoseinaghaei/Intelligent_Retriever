@@ -1,0 +1,16 @@
+"""Small interfaces used by the training loop, independent of Ray and Docker."""
+from typing import ContextManager, Protocol
+
+
+class Learner(Protocol):
+    def sample(self, question: str) -> list[str]: ...
+    def update(self, rewards: list[float]) -> dict: ...
+    def save(self, path: str) -> bool: ...
+
+
+class Scorer(Protocol):
+    def score(self, queries: list[str], record: dict, endpoint: str) -> list[dict]: ...
+
+
+class Environments(Protocol):
+    def open(self, identity: str) -> ContextManager[str]: ...
